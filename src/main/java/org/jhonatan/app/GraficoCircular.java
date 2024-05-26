@@ -7,6 +7,7 @@ package org.jhonatan.app;
 public class GraficoCircular {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        frmGraficoCircular circular = new frmGraficoCircular();
+        circular.setVisible(true);
     }
 }
