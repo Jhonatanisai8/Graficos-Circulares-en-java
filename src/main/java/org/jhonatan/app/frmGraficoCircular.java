@@ -1,10 +1,21 @@
 package org.jhonatan.app;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultKeyedValuesDataset;
+import org.jfree.data.general.DefaultPieDataset;
+
 /**
  *
  * @author Jhonatan
  */
 public class frmGraficoCircular extends javax.swing.JFrame {
+
+    //variables para el grafico
+    DefaultPieDataset datos;
 
     public frmGraficoCircular() {
         initComponents();
@@ -13,9 +24,31 @@ public class frmGraficoCircular extends javax.swing.JFrame {
     public void graficar() {
         int n1, n2, n3, n4;
         n1 = Integer.parseInt(txtGodzillaVSkong.getText());
-        n2 = Integer.parseInt(txtGodzillaVSkong.getText());
-        n3 = Integer.parseInt(txtGodzillaVSkong.getText());
-        n4 = Integer.parseInt(txtGodzillaVSkong.getText());
+        n2 = Integer.parseInt(txtAvengers.getText());
+        n3 = Integer.parseInt(txtEraHielo.getText());
+        n4 = Integer.parseInt(txtReyLeon.getText());
+
+        datos = new DefaultKeyedValuesDataset();
+
+        //establecemos los valores
+        datos.setValue("Godzilla vs Kong", n1);
+        datos.setValue("Avengers", n2);
+        datos.setValue("Era de Hielo", n3);
+        datos.setValue("Rey Leon", n4);
+
+        JFreeChart grafico = ChartFactory.createPieChart("Peliculas mas Vistas", datos, true, true, false);
+
+        //creamos un panel
+        ChartPanel panel = new ChartPanel(grafico);
+        panel.setMouseWheelEnabled(true);
+        panel.setPreferredSize(new Dimension(400, 200));
+
+        jPanel1.setLayout(new BorderLayout());
+        jPanel1.add(panel, BorderLayout.NORTH);
+
+        pack();
+        repaint();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -130,7 +163,7 @@ public class frmGraficoCircular extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficarActionPerformed
-
+        graficar();
     }//GEN-LAST:event_btnGraficarActionPerformed
 
     public static void main(String args[]) {
